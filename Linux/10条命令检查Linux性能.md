@@ -1,17 +1,9 @@
-title: 10条命令检查Linux性能
+## 10条命令检查Linux性能
 
-date: 2015-12-29 23:08:53
-
-comment: true
-
-categories:
-- Linux-CMD 
-
----
 最近看微博发现一片在Linux圈很流行的文章叫"10条命令检查Linux性能"，于是我对这10条命令相当感兴趣，顺便对各个命令做下详细的介绍好了。  
 文章链接：  
 http://wkee.net/post/linux-performance.html  
-<!-- more -->
+
 
 uptime
 ------
@@ -40,6 +32,7 @@ uptime
 [root@VM_159_22_centos logs]# uptime
  16:59:09 up 23:11,  2 users,  load average: 5.77, 42.90, 47.10
 ```
+
 
 dmesg
 -----
@@ -76,6 +69,7 @@ dmesg
 [    6.067840] ip_tables: (C) 2000-2006 Netfilter Core Team
 [    6.118031] NET: Registered protocol family 10
 ```
+
 
 vmstat
 ------
@@ -116,6 +110,7 @@ sy : 系统进程消耗CPU的时间
 id : 空闲CPU时间  
 wa : IO等待CPU时间  
 st : 被偷走的CPU时间  
+
 
 mpstat
 ------
@@ -199,6 +194,7 @@ Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_
 
 ##### %idle
 表示空闲CPU的百分比。  
+
 
 pidstat
 -------
