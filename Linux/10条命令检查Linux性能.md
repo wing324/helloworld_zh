@@ -445,7 +445,4 @@ Linux 3.10.0-229.el7.x86_64 (localhost.localdomain)     2016年02月01日  _x86_
 - kB_rd/s 每秒进程从磁盘读取的数据量（单位：kB）
 - kB_wr/s 每秒进程向磁盘写的数据量（单位：kB）
 - kB_ccwr/s 
-- 
-
-
 
