@@ -101,7 +101,7 @@
    # 修改mysql_install_db脚本权限
    chmod 755 scripts/mysql_install_db
    # 初始化MySQL
-   scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/3306/db_file --defaults-file=/etc/my-.cnf --force --skip-name-resolve   --user=mysql
+   scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/3306/db_file --defaults-file=/etc/my-.cnf  --user=mysql
 ```
 
 12. 添加MySQL环境变量
