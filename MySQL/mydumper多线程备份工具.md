@@ -7,7 +7,7 @@
 #### 一、mydumper安装
 
 ```shell
-apt-get install libglib2.0-dev libmysqlclient15-dev zlib1g-dev libpcre3-dev libssl-dev
+apt-get install libpcre3 libglib2.0 zlib1g libglib2.0-dev libmysqlclient15-dev zlib1g-dev libpcre3-dev libssl-dev
 cd /usr/local
 wget https://launchpadlibrarian.net/225370879/mydumper-0.9.1.tar.gz
 tar -zxvf mydumper-0.9.1.tar.gz
