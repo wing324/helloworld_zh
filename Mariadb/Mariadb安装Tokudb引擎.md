@@ -32,9 +32,7 @@ Mariadb：10.1.18（二进制版本）
    echo never > /sys/kernel/mm/transparent_hugepage/defrag
 
    # 启动MySQL后，在MySQL
-   ```
-
-
+   INSTALL SONAME 'ha_tokudb';
    # 卸载tokudb
    UNINSTALL SONAME 'ha_tokudb';
    ```
