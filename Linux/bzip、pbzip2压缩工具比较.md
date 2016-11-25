@@ -4,6 +4,8 @@ Linux版本：Debian8.5
 
 pbzip2安装：`apt-get install pbzip2`
 
+pbzip2详情请见：[pbzip2的安装与使用](https://github.com/wing324/helloworld/blob/master/Linux/pbzip2%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8.md)
+
 #### bzip2(单线程压缩工具)
 
 ```shell
