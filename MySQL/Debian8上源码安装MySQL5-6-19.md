@@ -1,6 +1,6 @@
 ## Debian8上源码安装MySQL5.6.19
 
-Linux版本：Debian8.5
+Linux版本：Debian8.5<br />
 MySQL版本：MySQL5.6.19
 
 
