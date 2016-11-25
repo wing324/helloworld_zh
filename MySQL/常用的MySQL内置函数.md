@@ -11,7 +11,7 @@ MySQL存在很多内置的函数，往往会给我们的工作带来很多方便
 返回参数中第一个不是NULL的值。  
 
 ```sql
-root@localhost : wing 11:23:22> select coalesce(null,null,1,2,3,'test');
+root@localhost : wing 11:23:22> SELECT coalesce(null,null,1,2,3,'test');
 +----------------------------------+
 | coalesce(null,null,1,2,3,'test') |
 +----------------------------------+
@@ -19,7 +19,7 @@ root@localhost : wing 11:23:22> select coalesce(null,null,1,2,3,'test');
 +----------------------------------+
 1 row in set (0.00 sec)
 
-root@localhost : wing 11:39:14> select coalesce(null,'test',null,1,2);
+root@localhost : wing 11:39:14> SELECT coalesce(null,'test',null,1,2);
 +--------------------------------+
 | coalesce(null,'test',null,1,2) |
 +--------------------------------+
@@ -27,7 +27,7 @@ root@localhost : wing 11:39:14> select coalesce(null,'test',null,1,2);
 +--------------------------------+
 1 row in set (0.00 sec)
 
-root@localhost : wing 11:42:54> select coalesce('test',null,1,2);
+root@localhost : wing 11:42:54> SELECT coalesce('test',null,1,2);
 +---------------------------+
 | coalesce('test',null,1,2) |
 +---------------------------+
@@ -91,7 +91,7 @@ root@localhost : wing 11:54:34> select interval(2,1,2,3,4);
 判断其参数是否为NULL值。  
 
 ```sql
-root@localhost : wing 11:54:39> select isnull(null);
+root@localhost : wing 11:54:39> SELECT isnull(null);
 +--------------+
 | isnull(null) |
 +--------------+
@@ -99,7 +99,7 @@ root@localhost : wing 11:54:39> select isnull(null);
 +--------------+
 1 row in set (0.00 sec)
 
-root@localhost : wing 11:57:34> select isnull(0);
+root@localhost : wing 11:57:34> SELECT isnull(0);
 +-----------+
 | isnull(0) |
 +-----------+
@@ -107,7 +107,7 @@ root@localhost : wing 11:57:34> select isnull(0);
 +-----------+
 1 row in set (0.00 sec)
 
-root@localhost : wing 11:57:37> select isnull('test');
+root@localhost : wing 11:57:37> SELECT isnull('test');
 +----------------+
 | isnull('test') |
 +----------------+
@@ -384,17 +384,51 @@ root@localhost : wing 04:48:25> select bit_length('MySQL数据库');
 1 row in set (0.00 sec)
 ```
 
+##### GROUP_CONCAT()
+
+将所有列的值组合成一行。
+
+```
+mysql> SELECT * FROM t;
++------+-------+
+| id   | name  |
++------+-------+
+|    1 | PG    |
+|    2 | MySQL |
++------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT GROUP_CONCAT(id,name) FROM t;
++-----------------------+
+| GROUP_CONCAT(id,name) |
++-----------------------+
+| 1PG,2MySQL            |
++-----------------------+
+1 row in set (0.00 sec)
+```
+
 ##### CONCAT()
-对字符串进行合并  
+
+将每一列的字段组合成一行 。
 
 ```sql
-root@localhost : wing 04:50:15> select concat('MySQL','数据库');
-+-----------------------------+
-| concat('MySQL','数据库')    |
-+-----------------------------+
-| MySQL数据库                 |
-+-----------------------------+
-1 row in set (0.00 sec)
+mysql> SELECT * FROM t;
++------+-------+
+| id   | name  |
++------+-------+
+|    1 | PG    |
+|    2 | MySQL |
++------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(id,name) FROM t;
++-----------------+
+| CONCAT(id,name) |
++-----------------+
+| 1PG             |
+| 2MySQL          |
++-----------------+
+2 rows in set (0.00 sec)
 ```
 
 ##### ELT(expr1,expr2....)

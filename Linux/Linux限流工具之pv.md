@@ -2,8 +2,6 @@
 
 pv是一款Liunx下的限流工具，可以使用该工具查看任务进度，传输速率，使用时间以及预估完成时间，还能限制传输速率  
 
-
-
 pv示例
 ------
 ```
@@ -96,5 +94,3 @@ save process ID in FILE
 show this help and exit  
 ###### -V, --version  
 show version information and exit  
-
-Please report any bugs to Andrew Wood <andrew.wood@ivarch.com>.

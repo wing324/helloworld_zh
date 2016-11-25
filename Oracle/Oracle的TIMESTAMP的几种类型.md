@@ -2,8 +2,6 @@
 
 Oralce中TIMESTAMP的几种类型。  
 
-
-
 TIMESTAMP的几种类型比较
 ---------------------
 ###### TIMESTAMP

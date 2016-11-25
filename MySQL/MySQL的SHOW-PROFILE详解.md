@@ -4,6 +4,7 @@ MySQL中的profiling功能为MySQL的优化提供了另一条路径，可以根�
 
 
 
+
 SHOW PROFILE语法
 ----------------
 ```sql
@@ -400,4 +401,4 @@ mysql> show variables like "profiling_hist%";
 1 row in set (0.00 sec)
 ```
 ##### SHOW PROFILE各个Status详解
-详见show processlist。
+详见show processlist https://github.com/wing324/helloworld/blob/master/MySQL/SHOW-PROCESSLIST%E5%92%8CSHOW-PROFILE%E7%9A%84Status%E6%95%B4%E7%90%86%EF%BC%88%E8%8B%B1%E6%96%87%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E7%89%88%EF%BC%89.md。

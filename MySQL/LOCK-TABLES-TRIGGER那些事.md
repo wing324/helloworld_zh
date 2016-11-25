@@ -1,6 +1,7 @@
-LOCK TABLES & TRIGGER那些事
+## LOCK TABLES & TRIGGER那些事
 
 LOCK TABLES和TRIGGER之间会产生哪些奇妙的锁呢？
+
 
 
 
@@ -65,6 +66,7 @@ ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
 2. t2表持有写锁，虽然LOCK TABLES显示指定读锁，但是触发器中需要做INSERT操作;  
 3. t3表持有读锁，因为触发器中只需要做SELECT操作;  
 4. t4表持有写锁，因为触发器中需要UPDATE操作。  
+
 
 
 结论

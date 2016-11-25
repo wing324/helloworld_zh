@@ -9,7 +9,7 @@ https://dev.mysql.com/doc/refman/5.6/en/privilege-changes.html
 
 **当mysqld启动时，所有的权限都会被加载到内存中。**  
 如果使用GRANT/REVOKE/SET PASSWORD/RENAME USER命令来更改数据库中的权限表，mysqld服务器将会注意到这些变化并立即加载更新后的权限表至内存中，即权限生效；  
-如果使用INSERT/UPDATE/DELETE语句更新权限表，则内存中的权限表不会感知到数据库中权限的更新，必须重启服务器或者使用FLUSH PRIVILEGES命令使更新的权限表加载到内存中，即权限需在重启服务器或者FLUSH PRIVILEGES之后方可生效。  
+如果使用INSERT/UPDATE/DELETE语句更新权限表(如mysql.user表等)，则内存中的权限表不会感知到数据库中权限的更新，必须重启服务器或者使用FLUSH PRIVILEGES命令使更新的权限表加载到内存中，即权限需在重启服务器或者FLUSH PRIVILEGES之后方可生效。  
 
 **权限生效的含义：**  
 1、表级别/列级别的权限，当更新后的权限加载至内存表中，已存在的会话下一次请求时可使用该权限，在修改权限后的建立的会话则立即生效；  

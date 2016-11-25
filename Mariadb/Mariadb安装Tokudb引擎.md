@@ -52,7 +52,7 @@ Mariadb：10.1.18（二进制版本）
    tokudb_read_block_size = 128K
    tokudb_read_buf_size = 128K
 
-   # 然后将INSTALL SONAME 'ha_tokudb';生成的部分文件拷贝到对应的tokudb目录中去
+   # 然后将INSTALL SONAME 'ha_tokudb';生成的部分文件(默认在datadir目录下)拷贝到对应的tokudb目录中去
    # tokudb-data-dir中应有的文件：
    __tokudb_lock_dont_delete_me_data
    __tokudb_lock_dont_delete_me_temp

@@ -2,8 +2,6 @@
 
 Oralce中VARCHAR2()和NVARCHAR2()的区别。  
 
-
-
 VARCHAR2()和NVARCHAR2()的官方定义
 --------------------------------
 官方文档定义如下：  

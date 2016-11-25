@@ -5,8 +5,6 @@ Inception官方文档：
 http://mysql-inception.github.io/inception-document/    
 由于官方文档中没有对该工具的安装写详细教程，故自己写一个便于不了解编译安装的人参考。    
 
-
-
 inception编译安装
 ------------------------
 

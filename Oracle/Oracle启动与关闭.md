@@ -1,8 +1,6 @@
 ## Oracle启动与关闭
 
 Oralce的启动与关闭。  
- 
-
 
 Oracle启动
 ----------

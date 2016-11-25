@@ -1,6 +1,7 @@
 ## Debian8上源码安装MySQL5.6.19
 
-最近换了份新工作，以前一直接触的是CentOS操作系统，并且是RPM安装MySQL的，现在新公司使用Debian系统，并用源码安装MySQL，所以赶紧将新知识纪录下来＝＝
+Linux版本：Debian8.5
+MySQL版本：MySQL5.6.19
 
 
 1. 安装编译软件cmake,make
@@ -87,7 +88,7 @@
    # 切换到源码目录
    cd ~/mysql-5.6.19/
    # cmake
-   cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql/3306/db_file -DSYSCONFDIR=/etc/my.cnf -DWITH_INNOBASE_STORAGE_ENGINE=1 -DWITH_FEDERATED_STORAGE_ENGINE=1 -DWITH_PARTITION_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLE_DEBUG_SYNC=0 -DENABLED_LOCAL_INFILE=1 -DENABLED_PROFILING=1 -DMYSQL_TCP_PORT=3306 -DMYSQL_UNIX_ADDR=/data/mysql/3306/tmpdir/my-3306.sock -DWITH_DEBUG=0 -DWITH_SSL=yes -DCMAKE_EXE_LINKER_FLAGS="-ljemalloc" -DWITH_SAFEMALLOC=OFF
+   cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql/3306/db_file -DSYSCONFDIR=/etc/my.cnf -DWITH_INNOBASE_STORAGE_ENGINE=1  -DWITH_PARTITION_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLE_DEBUG_SYNC=0 -DENABLED_LOCAL_INFILE=1 -DENABLED_PROFILING=1 -DMYSQL_TCP_PORT=3306 -DMYSQL_UNIX_ADDR=/data/mysql/3306/tmpdir/my-3306.sock -DWITH_DEBUG=0 -DWITH_SSL=yes -DCMAKE_EXE_LINKER_FLAGS="-ljemalloc" -DWITH_SAFEMALLOC=OFF
    # make
    make -j${cpu_core_num}&&make install -j${cpu_core_num}&&make clean
    #cpu_core_num = (grep "processor" /proc/cpuinfo|uniq|wc -l)］
