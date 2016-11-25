@@ -1,7 +1,7 @@
-## Debian8上源码安装MySQL5.6.19
+## Debian8上源码安装MySQL5.6.xx
 
 Linux版本：Debian8.5<br />
-MySQL版本：MySQL5.6.19
+MySQL版本：MySQL5.6.xx
 
 
 1. 安装编译软件cmake,make
@@ -13,9 +13,9 @@ MySQL版本：MySQL5.6.19
    apt-get install -y make
    ```
 
-2. 获得MySQL源码
+2. 获得MySQL所有版本(5.0.15-latest)地址传送门
 
-   http://dev.mysql.com/downloads/mysql/
+   http://downloads.mysql.com/archives/community/
 
 3. 创建MySQL根目录
 
@@ -27,7 +27,7 @@ MySQL版本：MySQL5.6.19
 4. 解压MySQL源码
 
    ```shell
-   tar -zxvf mysql-5.6.19.tar.gz
+   tar -zxvf mysql-5.6.xx.tar.gz
    ```
 
 5. 创建mysql用户与用户组
@@ -82,11 +82,11 @@ MySQL版本：MySQL5.6.19
    mv ~/my.cnf /etc
    ```
 
-10. 编译安装MySQL5.6.19
+10. 编译安装MySQL5.6.xx
 
 ```shell
    # 切换到源码目录
-   cd ~/mysql-5.6.19/
+   cd ~/mysql-5.6.xx/
    # cmake
    cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql/3306/db_file -DSYSCONFDIR=/etc/my.cnf -DWITH_INNOBASE_STORAGE_ENGINE=1  -DWITH_PARTITION_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLE_DEBUG_SYNC=0 -DENABLED_LOCAL_INFILE=1 -DENABLED_PROFILING=1 -DMYSQL_TCP_PORT=3306 -DMYSQL_UNIX_ADDR=/data/mysql/3306/tmpdir/my-3306.sock -DWITH_DEBUG=0 -DWITH_SSL=yes -DCMAKE_EXE_LINKER_FLAGS="-ljemalloc" -DWITH_SAFEMALLOC=OFF
    # make
