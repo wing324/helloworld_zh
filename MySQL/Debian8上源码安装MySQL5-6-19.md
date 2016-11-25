@@ -47,16 +47,16 @@ MySQL版本：MySQL5.6.19
 
 7. 创建MySQL相关目录
 
-   | 目录         | 含义            |
-   | :--------- | ------------- |
-   | bin_log    | 二进制日志目录       |
-   | db_file    | 数据文件目录        |
-   | innodb_log | InnoDB重做日志目录  |
-   | innodb_ts  | InnoDB共享表空间目录 |
-   | log        | 日志文件目录        |
-   | relay_log  | InnoDB中继日志目录  |
-   | tmpdir     | 临时文件目录        |
-   | undo_log   | InnoDB回滚日志目录  |
+   | 目录         | 含义                                     | 配置参数                                     |
+   | :--------- | -------------------------------------- | ---------------------------------------- |
+   | bin_log    | 二进制日志目录                                | log_bin_basename<br />log_bin_index      |
+   | db_file    | 数据文件目录                                 | datadir                                  |
+   | innodb_log | InnoDB重做日志目录                           | innodb_log_group_home_dir                |
+   | innodb_ts  | InnoDB共享表空间目录                          | innodb_data_home_dir                     |
+   | log        | 日志文件目录(error log+general log+slow log) | log_error<br />general_log_file<br />slow_query_log_file |
+   | relay_log  | InnoDB中继日志目录                           | relay_log_basename<br />relay_log_index  |
+   | tmpdir     | 临时文件目录                                 | tmpdir                                   |
+   | undo_log   | InnoDB回滚日志目录                           | innodb_undo_directory                    |
 
    ```shell
    mkdir -p /data/mysql/3306/bin_log
