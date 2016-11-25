@@ -1,10 +1,10 @@
-## bzip、pbzip2压缩工具比较
+## bzip2、pbzip2压缩工具比较
 
 Linux版本：Debian8.5
 
 pbzip2安装：`apt-get install pbzip2`
 
-#### bzip(单线程压缩工具)
+#### bzip2(单线程压缩工具)
 
 ```shell
 # 压缩单个文件测试
