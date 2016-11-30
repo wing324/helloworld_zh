@@ -50,7 +50,7 @@ MySQL版本：MySQL5.6.xx
    | 目录         | 含义                                     | 配置参数                                     |
    | :--------- | -------------------------------------- | ---------------------------------------- |
    | bin_log    | 二进制日志目录                                | log_bin_basename<br />log_bin_index      |
-   | db_file    | 数据文件目录                                 | datadir                                  |
+   | mydata     | 数据文件目录                                 | datadir                                  |
    | innodb_log | InnoDB重做日志目录                           | innodb_log_group_home_dir                |
    | innodb_ts  | InnoDB共享表空间目录                          | innodb_data_home_dir                     |
    | log        | 日志文件目录(error log+general log+slow log) | log_error<br />general_log_file<br />slow_query_log_file |
@@ -60,7 +60,7 @@ MySQL版本：MySQL5.6.xx
 
    ```shell
    mkdir -p /data/mysql/3306/bin_log
-   mkdir -p /data/mysql/3306/db_file
+   mkdir -p /data/mysql/3306/mydata
    mkdir -p /data/mysql/3306/innodb_log
    mkdir -p /data/mysql/3306/innodb_ts
    mkdir -p /data/mysql/3306/log
@@ -88,10 +88,10 @@ MySQL版本：MySQL5.6.xx
    # 切换到源码目录
    cd ~/mysql-5.6.xx/
    # cmake
-   cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql/3306/db_file -DSYSCONFDIR=/etc/my.cnf -DWITH_INNOBASE_STORAGE_ENGINE=1  -DWITH_PARTITION_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLE_DEBUG_SYNC=0 -DENABLED_LOCAL_INFILE=1 -DENABLED_PROFILING=1 -DMYSQL_TCP_PORT=3306 -DMYSQL_UNIX_ADDR=/data/mysql/3306/tmpdir/my-3306.sock -DWITH_DEBUG=0 -DWITH_SSL=yes -DCMAKE_EXE_LINKER_FLAGS="-ljemalloc" -DWITH_SAFEMALLOC=OFF
+   cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr/local/mysql -DMYSQL_DATADIR=/data/mysql/3306/mydata -DSYSCONFDIR=/etc/my.cnf -DWITH_INNOBASE_STORAGE_ENGINE=1  -DWITH_PARTITION_STORAGE_ENGINE=1 -DDEFAULT_CHARSET=utf8 -DDEFAULT_COLLATION=utf8_general_ci -DENABLE_DEBUG_SYNC=0 -DENABLED_LOCAL_INFILE=1 -DENABLED_PROFILING=1 -DMYSQL_TCP_PORT=3306 -DMYSQL_UNIX_ADDR=/data/mysql/3306/tmpdir/my-3306.sock -DWITH_DEBUG=0 -DWITH_SSL=yes -DCMAKE_EXE_LINKER_FLAGS="-ljemalloc" -DWITH_SAFEMALLOC=OFF
    # make
-   make -j${cpu_core_num}&&make install -j${cpu_core_num}&&make clean
-   #cpu_core_num = (grep "processor" /proc/cpuinfo|uniq|wc -l)］
+   make &&make install &&make clean
+   #或者使用make -j2&&make install -j2&&make clean使用两个线程编译，数字"2"可以根据CPU核数进行指定
    # 修改MySQL根目录的所属用户与组
    chown -R mysql:mysql /usr/local/mysql  
 ```
@@ -102,7 +102,7 @@ MySQL版本：MySQL5.6.xx
    # 修改mysql_install_db脚本权限
    chmod 755 scripts/mysql_install_db
    # 初始化MySQL
-   scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/3306/db_file --defaults-file=/etc/my-.cnf  --user=mysql
+   scripts/mysql_install_db --basedir=/usr/local/mysql --datadir=/data/mysql/3306/mydata --defaults-file=/etc/my-.cnf  --user=mysql
 ```
 
 12. 添加MySQL环境变量
