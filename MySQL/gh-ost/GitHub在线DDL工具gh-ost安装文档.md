@@ -26,8 +26,8 @@ export GOPATH=/usr/local/go/src/github.com/github/gh-ost
 source ~/.bashrc
 
 # 获取+解压go源码安装包，go下载地址：https://golang.org/dl/
-wget https://storage.googleapis.com/golang/go1.5.src.tar.gz
-tar -zxvf go1.5.src.tar.gz -C /usr/local/
+wget https://storage.googleapis.com/golang/go1.5.linux-amd64.tar.gz
+tar -zxvf go1.5.linux-amd64.tar.gz -C /usr/local/
 # 此时是go的安装目录为/usr/local/go
 
 # 验证go安装成功
