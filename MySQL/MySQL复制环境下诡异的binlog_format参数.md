@@ -2,7 +2,7 @@
 
 #### 一、问题描述：
 
-有一次在MySQL从库上执行binlog_format=row之后，发现binlog的格式咋还是statement，并没有变化为binlog_format，查阅MySQL官方手册发现binlog_format的确是个动态修改的参数(http://dev.mysql.com/doc/refman/5.6/en/server-options.html#option_mysqld_binlog-format)，这是为啥呢？
+有一次在MySQL从库上执行binlog_format=row之后，发现binlog的格式咋还是statement，并没有变化为binlog_format，查阅MySQL官方手册发现binlog_format的确是个动态修改的参数([官方手册请点击此处](http://dev.mysql.com/doc/refman/5.6/en/server-options.html#option_mysqld_binlog-format))，这是为啥呢？
 
 
 
