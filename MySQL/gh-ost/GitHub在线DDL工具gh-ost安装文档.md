@@ -1,4 +1,4 @@
-## GitHub在线MySQL DDL工具gh-ost安装文档
+## GitHub开源MySQL Online DDL工具gh-ost安装文档
 
 查看GitHub开源的MySQL在线DDL工具gh-ost官方文档，以及google一圈都没有发现gh-ost的安装文档，于是，还是自己动手，丰衣足食吧==
 
