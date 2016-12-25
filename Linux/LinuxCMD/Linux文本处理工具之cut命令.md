@@ -39,7 +39,7 @@
   > 3. 输出每一行第一列内容
   >
   >    ```shell
-  >    root@OPS-yumin-02:~/wing # cut -d , -f 1 cut.txt 
+  >    root@wing:~/wing # cut -d , -f 1 cut.txt 
   >    root
   >    daemon
   >    bin
@@ -49,7 +49,7 @@
   > 4. 输出每一行第一、二列内容
   >
   >    ```shell
-  >    root@OPS-yumin-02:~/wing # cut -d , -f 1,2 cut.txt 
+  >    root@wing:~/wing # cut -d , -f 1,2 cut.txt 
   >    root,x
   >    daemon,x
   >    bin,x
