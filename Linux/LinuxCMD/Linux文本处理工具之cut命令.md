@@ -29,7 +29,7 @@
   > 2. 输出每一行的第二个字符内容
   >
   >    ```shell
-  >    root@OPS-yumin-02:~/wing # cut -c 2 cut.txt 
+  >    root@wing:~/wing # cut -c 2 cut.txt 
   >    o
   >    a
   >    i
