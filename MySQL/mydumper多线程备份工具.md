@@ -29,7 +29,9 @@ mydumper -u username -h host -P port -p password -B database -o back_dir  -t thr
 myloader -u username -h host -P port -p passwd -B database  -d back_dir -t thread
 ```
 
+**注意：**
 
+ 线程数thread务必使用偶数，不要使用奇数，特别是myloader恢复的时候，否则容易引起一系列错误。
 
 #### 三、mydumper常用参数
 
