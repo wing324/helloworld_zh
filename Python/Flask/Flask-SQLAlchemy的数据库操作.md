@@ -1,6 +1,15 @@
-## Flask-SQLAlchemy的数据库操作
+## flask-sqlalchemy的MySQL数据库操作
+
+**安装命令**
+
+```python
+pip install mysql-python
+pip install flask-sqlalchemy
+```
 
 #### 一、连接数据库
+
+
 
 #### 二、插入行
 
