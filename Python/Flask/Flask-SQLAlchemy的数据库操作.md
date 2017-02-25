@@ -237,4 +237,4 @@ python hello.py shell
 
 
 
-*本文参考文档：《Flask web开发》*
+*本文示例参考文档：《Flask web开发》*
