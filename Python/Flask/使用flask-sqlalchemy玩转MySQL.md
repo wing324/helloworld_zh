@@ -1,4 +1,4 @@
-## flask-sqlalchemy的MySQL数据库操作
+## 使用flask-sqlalchemy玩转MySQL
 
 **安装命令**
 
