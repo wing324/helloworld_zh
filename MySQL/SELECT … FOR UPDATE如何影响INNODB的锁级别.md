@@ -39,6 +39,8 @@
 
 
 
+### 实验
+
 一、WHERE条件使用主键
 
 ```sql
@@ -193,7 +195,7 @@ ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
 
 
 
-四、WHERE条件使用联合索引的部分索引
+四、WHERE条件使用联合索引的前缀索引
 
 ```sql
 # session 1
@@ -237,7 +239,7 @@ mysql> select * from t where id =3 for update
 +----+-------+------+------+------+
 1 row in set (0.00 sec)
 
-mysql> select * from t where num1=4 for update;
+mysql> select * from t where num1=4 for update; -- 使用了普通索引
 +----+------+------+------+------+
 | id | name | num1 | num2 | num3 |
 +----+------+------+------+------+
@@ -253,7 +255,7 @@ mysql> explain select * from t where num1=4 for update;
 +----+-------------+-------+------+---------------+--------------+---------+-------+------+-------+
 1 row in set (0.00 sec)
 
-mysql> select * from t where num1=0 for update;
+mysql> select * from t where num1=0 for update; -- 使用了全表扫描
 ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
 
 mysql> explain select * from t where num1=0 for update;
@@ -300,3 +302,14 @@ mysql> select * from t where name='BBBBB' for update;
 ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
 ```
 
+
+
+### 总结
+
+1. WHERE条件使用主键，`SELECT ... FOR UPDATE`为行级锁；
+2. WHERE条件使用唯一索引，`SELECT ... FOR UPDATE`为行级锁；
+3. WHERE条件使用普通索引，`SELECT ... FOR UPDATE`为行级锁；
+4. WHERE条件使用联合索引的前缀索引，`SELECT ... FOR UPDATE`为行级锁；
+5. WHERE条件不使用索引，`SELECT ... FOR UPDATE`为表级锁；
+
+即：WHERE条件能使用索引时，`SELECT ... FOR UPDATE`表现为行级锁；WHERE条件不使用索引，`SELECT ... FOR UPDATE`表现为表级锁；
