@@ -42,7 +42,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://user:password@host:port/dbname'
 #### 二、创建所有表
 
 ```
-python hello.py shell
+python
 >>> from hello import db,Role,User
 >>> db.create_all()
 ```
@@ -50,7 +50,7 @@ python hello.py shell
 #### 三、删除所有表
 
 ```python
-python hello.py shell
+python
 >>> from hello import db,Role,User
 >>> db.drop_all()
 ```
@@ -59,7 +59,7 @@ python hello.py shell
 
 ```python
 # 插入单行
-python hello.py shell
+python
 >>> from hello import db,Role,User
 >>> db.session.add(Role(name='Admin'))
 >>> db.session.commit()
@@ -68,7 +68,7 @@ python hello.py shell
 >>> db.session.commit()
 
 # 插入多行
-python hello.py shell
+python
 >>> from hello import db,Role,User
 >>> db.session.add_all([User(username='john',role_id=1),User(username='susan',role_id=3),User(username='david',role_id=3)])
 >>> db.session.commit()
@@ -77,7 +77,7 @@ python hello.py shell
 #### 五、更新行
 
 ```python
-python hello.py shell
+python
 >>> from hello import db,Role,User
 >>> admin = Role.query.filter_by(name='Admin').first()
 >>> admin.name='Administrator'
@@ -87,7 +87,7 @@ python hello.py shell
 #### 六、删除行
 
 ```python
-python hello.py shell
+python
 >>> from hello import db,Role,User
 >>> mod = Role.query.filter_by(name='Moderator').first()
 >>> db.session.delete(mod)
@@ -102,7 +102,7 @@ python hello.py shell
   # 注意，此处的查询结果完全取决于代码示例中的
   # def __repr__(self)
   # 这段函数，请各位小主们，好好斟酌下～
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   >>> Role.query.all()
   [<Role u'Administrator'>, <Role u'User'>]
@@ -113,7 +113,7 @@ python hello.py shell
 - 按照一个条件过滤数据记录(where)
 
   ```python
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   >>> Role.query.filter_by(name='Administrator').first()
   <Role u'Administrator'>
@@ -137,7 +137,7 @@ python hello.py shell
 - 聚合(count)
 
   ```python
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   >>> User.query.filter_by(role_id=3,username='susan').count()
   1L
@@ -150,7 +150,7 @@ python hello.py shell
 - 求和(sum)
 
   ```python
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   >>> from sqlalchemy.sql import func
   >>> User.query.with_entities(func.sum(User.id)).all()
@@ -162,7 +162,7 @@ python hello.py shell
 - 平均数(avg)
 
   ```python
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   >>> from sqlalchemy.sql import func
   >>> User.query.with_entities(func.avg(User.role_id)).all()
@@ -174,7 +174,7 @@ python hello.py shell
 - 排序(order by)
 
   ```python
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   # 升序(asc)
   >>> User.query.order_by(User.role_id).all()
@@ -187,7 +187,7 @@ python hello.py shell
 - 分组(group by)
 
   ```python
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   >>> User.query.group_by(User.role_id).all()
   [<User u'john',Role id 1L>, <User u'susan',Role id 3L>]
@@ -196,7 +196,7 @@ python hello.py shell
 - 限制(limit)
 
   ```python
-  python hello.py shell
+  python
   >>> from hello import db,Role,User
   >>> User.query.all()
   [<User u'john',Role id 1L>, <User u'susan',Role id 3L>, <User u'david',Role id 3L>]
@@ -219,7 +219,7 @@ python hello.py shell
 #### 八、将Flask-SQLAlchemy的查询语句转换为SQL
 
 ```python
-python hello.py shell
+python
 >>> from hello import db,Role,User
 >>> User.query.all()
 [<User u'john',Role id 1L>, <User u'susan',Role id 3L>, <User u'david',Role id 3L>]
