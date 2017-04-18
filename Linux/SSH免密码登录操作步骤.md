@@ -24,8 +24,8 @@ server1可以通过SSH免密码登录的方式登录到server2和server3上。
 - server1上使用ssh-keygen创建公钥
 
   ```shell
-  ssh-keygen -t rsa
-  # 而后按下一系列的Enter键即可
+  ssh-keygen -t rsa -N "xxxx"
+  # 而后按下一系列的Enter键即可,-N为登陆时候输入一个ssh加密，等于给ssh-key私钥加密
   ```
 
   ​说明：
