@@ -67,9 +67,17 @@
   >    int    4字节  
   >    long  8字节
   > 2. 字符型  
-  >    char
+  >    char  2字节
   > 3. 浮点型  
   >    float   2字节    单精度  
   >    double    4字节    双精度
   > 4. 布尔型  
-  >    boolean 
+  >    boolean   true(真) flase(假)
+
+- Java的变量和常量  
+
+  1. java的变量  
+     变量：值可以变
+  2. java的常量  
+     常量：值不可以变  
+     定义常量使用final关键字
