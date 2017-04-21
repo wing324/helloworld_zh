@@ -117,4 +117,30 @@
      a=1;
      ```
 
-     ​
+
+## 2017-04-22
+
+- 转义字符  
+  每个转义字符由两个字符组成，但是编译器会将其当作一个字符，如"\n"为1个字符。
+
+- System.out.print()与System.out.println()的区别  
+  System.out.print()该行输出后不换行，下一个输出接着本行后输出；  
+  System.out.println()该行输出后换行。
+
+  ```java
+  # System.out.print()
+  System.out.print("Hello World!");
+  System.out.print("Hello World!");
+  // 输出的结果：Hello World!Hello World!
+
+  # System.out.println()
+  System.out.println("Hello World!");
+  System.out.println("Hello World!");
+  /** 
+  输出的结果为：
+  Hello World!
+  Hello World!
+  */
+  ```
+
+  ​
