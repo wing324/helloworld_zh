@@ -143,4 +143,19 @@
   */
   ```
 
-  ​
+
+## 2017-04-23
+
+- 字符串处理  
+  1. 求子串  
+     str.substring(startIndex,endIndex)
+  2. 测试字符串是否相等(equals)  
+     Object equals(==): 比较内存地址  
+     String equals: 比较内容相同即可，不管内存地址  
+     String equals为True时，Object equals不一定为True;  
+     Object equals为True时，String equals一定为True。
+  3. 字符串编辑
+- 存储空间  
+  寄存器、栈、堆、静态存储区、常量存储区(常量池)、其他存储位置；
+  其中，堆用来存储new的对象，常量池用来存储final static/String常量池。
+
