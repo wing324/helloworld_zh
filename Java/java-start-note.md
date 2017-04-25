@@ -184,4 +184,98 @@
 
   \++   自加运算  
   \--     自减运算  
-  ​
+
+## 2014-04-25
+
+- 关系运算符
+  返回值是boolean,一般用于判断语句中  
+  == 、!=、>、<、>=、<=
+
+- 逻辑运算符
+  &：逻辑与  
+  |：逻辑或  
+  !：逻辑非  
+  &&：短路与  
+  ||：短路或  
+
+  ```java
+  boolean a;
+  b = condition1&condition2; //先求得1、2的值，再进行判断
+  b = condition1&&condition2;//先对1进行判断，如果1为真，再判断2，如果1为假，则不再对2进行判断
+  // 由此可见短路算法效率更高
+  // 依次类推 逻辑或 与 短路或
+
+  //实战示例
+  package day14;
+
+  public class TestRelation2 {
+  	
+  	public static boolean returntrue(){
+  		System.out.println("Return True");
+  		return true;
+  	}
+  	
+  	public static boolean returnfalse(){
+  		System.out.println("Return False");
+  		return false;
+  	}
+  	
+  	public static void main(String[] args){
+  		boolean b1;
+  		System.out.println("逻辑与运算returntrue()&returnfalse()");
+  		b1 = returntrue()&returnfalse();
+  		System.out.println(b1);
+  		
+  		boolean b2;
+  		System.out.println("短路与运算returntrue()&&returnfalse()");
+  		b2 = returntrue()&&returnfalse();
+  		System.out.println(b2);
+  		
+  		boolean b3;
+  		System.out.println("逻辑与运算returnfalse()&returntrue()");
+  		b3 = returnfalse()&returntrue();
+  		System.out.println(b3);
+  		
+  		boolean b4;
+  		System.out.println("短路与运算returnfalse()&&returntrue()");
+  		b4 = returnfalse()&&returntrue();
+  		System.out.println(b4);
+  	}
+  }
+
+  // 实战结果
+  逻辑与运算returntrue()&returnfalse()
+  Return True
+  Return False
+  false
+  短路与运算returntrue()&&returnfalse()
+  Return True
+  Return False
+  false
+  逻辑与运算returnfalse()&returntrue()
+  Return False
+  Return True
+  false
+  短路与运算returnfalse()&&returntrue()
+  Return False
+  false
+  ```
+
+- 三元运算符
+
+  ```java
+  public class TestRelation3 {
+
+  	public static void main(String[] args){
+  		int i,k;
+  		i=-5;
+  		k=i>0?i:-i;//i>0输出i,i<=0 输出-i
+  		System.out.print(k);
+  	}
+  }
+  //i=-5输出--5，即5
+  //i=5输出5，即5
+  ```
+
+- 运算符优先级
+
