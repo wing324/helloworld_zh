@@ -279,3 +279,89 @@
 
 - 运算符优先级
 
+
+## 2016-04-26
+
+- 选择结构
+
+  1. if语句  
+
+     ```java
+     //非嵌套if语句
+     if(条件){
+       //语句块1
+     }else{
+       //语句块2
+     }
+
+     //嵌套if语句
+     if(条件1){
+       //语句块1
+       if(条件2){
+       	//语句块3
+     	}else{
+       	//语句块4
+     	}
+     }else{
+       //语句块2
+     }
+
+     // 嵌套if语句
+     if(条件1){
+       //语句块1
+     }else if(条件2){
+       	//语句块2
+     	}else if(条件3){
+           //语句块3
+     	}else{
+           //语句块4 
+     	}
+     ```
+
+  2. switch语句  
+
+     ```java
+     switch(表达式){
+       case:value1://程序语句1
+         		break;
+       case:value2://程序语句2
+         		break;
+       case:value3://程序语句3
+         		break;
+       case:value4://程序语句4
+         		break;
+       default://默认程序语句
+     }
+     ```
+
+     表达式类型：byte short int char String(java7+)  
+     value值会表达式类型一致，且不能出现重复的value值。
+
+- 循环结构  
+
+  1. while循环  
+
+     ```java
+     // while循环
+     while (条件){
+       //循环语句
+     }
+
+     //do-while循环
+     do{
+       //循环语句
+     }while(条件)
+     // do-while首先执行一次循环体，在去判断while条件确定是否再次执行循环体，所以do-while保证了至少执行一次循环体。
+     ```
+
+  2. for循环  
+
+     ```java
+     for(初始化;条件;迭代运算){
+       //循环语句
+     }
+
+     //条件必须为boolean表达式
+     ```
+
+     ​
