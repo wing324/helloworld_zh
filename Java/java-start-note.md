@@ -364,4 +364,70 @@
      //条件必须为boolean表达式
      ```
 
-     ​
+
+## 2017-04-27
+
+- break  
+  强制当前循环终止。
+
+- continue  
+  停止本次循环，继续执行剩下的循环。
+
+  ```java
+  //没有continue代码
+  public class TestContinue {
+
+  	public static void main(String[] args){
+  		for(int i=1;i<10;i++){
+  			System.out.print(i);
+  		}
+  	}
+  }
+  // 结果为：123456789
+
+  //有continue代码
+  public class TestContinue {
+
+  	public static void main(String[] args){
+  		for(int i=1;i<10;i++){
+  			if(i==6){
+  				continue;
+  			}
+  			System.out.print(i);
+  		}
+  	}
+  }
+  // 结果为：12345789
+  // 解析：此处当i=6的时候，跳出本次循环，继续执行剩下的循环，那么6将不被打印出来，从7开始继续执行循环
+  ```
+
+- return  
+  从当前的方法中退出，即跳出整个方法，该方法内所有的代码都将不会执行。
+
+- 数组  
+  一组数的集合，且集合中的数据类型必须相同。
+
+  - 创建数组  
+    ArrayType arrayname[]=new ArrayType[length];  
+    ArrayType[] arrayname=new ArrayType[length];//常用写法
+
+- 初始化数组  
+
+  > 1. 第一种初始化方式
+  >
+  >    ```java
+  >    double[] array1=new double[5];
+  >    array1[0]=0;
+  >    array1[1]=1;
+  >    array1[2]=3;
+  >    array1[3]=-16;
+  >    array1[4]=0.918;
+  >    ```
+  >
+  > 2. 第二中初始化方式
+  >
+  >    ```java
+  >    double[] array1={0,1,3,-16,0.918};
+  >    ```
+  >
+
