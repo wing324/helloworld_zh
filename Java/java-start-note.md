@@ -433,4 +433,96 @@
 
 ## 2017-04-28
 
-20节
+- Scanner类  
+  交互式输入
+
+  ```java
+  // 交互式输入提示
+  // 创建一个Scanner类的对象，用它获取用户的输入
+  Scanner sc=new Scanner(System.in);
+  System.out.println("请输入前10名同学的成绩:");
+
+  // 交互式输入获取
+  for(student=0;student<temp.length;student++){
+  	//读取用户的输入
+  	temp[student]=sc.nextDouble();
+  	sum+=temp[student];
+  ```
+
+- 获取数组长度  
+
+  ```java
+  int[] array1=new int[10];
+  System.out.println(array1.length);
+  ```
+
+- 数组的复制  
+  array1=array2;  
+  复制之后，两个引用指向同一个数组，不管是哪个引用修改了数组元素的值，对另一个引用来说，元素的值也是修改过的。  
+
+  ```java
+  public class TestCopyArray {
+
+  	public static void main(String[] args){
+  		int[] array1={1,2,3};
+  		int[] array2={4,5,6};
+  		
+  		System.out.println("两个数组的初始化值为：");
+  		for(int i=0;i<array1.length;i++){
+  			System.out.println("array1["+i+"]="+array1[i]);
+  		}
+  		
+  		for(int i=0;i<array2.length;i++){
+  			System.out.println("array2["+i+"]="+array2[i]);
+  		}
+  		
+  		//把array2赋值给array1
+  		array1=array2;
+  		System.out.println("数组赋值之后的值为：");
+  		for(int i=0;i<array1.length;i++){
+  			System.out.println("array1["+i+"]="+array1[i]);
+  		}
+  		
+  		for(int i=0;i<array2.length;i++){
+  			System.out.println("array2["+i+"]="+array2[i]);
+  		}
+  		
+  		array1[0]=100;
+  		array2[1]=300;
+  		System.out.println("array1重新赋值之后的值为：");
+  		for(int i=0;i<array1.length;i++){
+  			System.out.println("array1["+i+"]="+array1[i]);
+  		}
+  		
+  		for(int i=0;i<array2.length;i++){
+  			System.out.println("array2["+i+"]="+array2[i]);
+  		}
+  	}
+  }
+
+  // 输出结果为：
+  两个数组的初始化值为：
+  array1[0]=1
+  array1[1]=2
+  array1[2]=3
+  array2[0]=4
+  array2[1]=5
+  array2[2]=6
+  数组赋值之后的值为：
+  array1[0]=4
+  array1[1]=5
+  array1[2]=6
+  array2[0]=4
+  array2[1]=5
+  array2[2]=6
+  array1重新赋值之后的值为：
+  array1[0]=100
+  array1[1]=300
+  array1[2]=6
+  array2[0]=100
+  array2[1]=300
+  array2[2]=6
+  ```
+
+- 多维数组  
+  Java中只存在一维数组，多维数组只是数组中的数组
