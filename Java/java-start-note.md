@@ -826,3 +826,15 @@
   >     方法的修饰符：public abstract
   >   - 接口类型引用变量
   >
+
+- 内部类  
+  一个类被嵌套定义在另一个类中，该类被称为内部类。内部类相当于外部类的成员或者变量。  
+  构造内部类  
+
+  ```java
+  Outer out=new Outer();
+  Outer.Inner in=Outer.new Inner();
+  ```
+
+  ​
+
