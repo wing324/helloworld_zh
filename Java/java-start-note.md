@@ -945,3 +945,110 @@
   Thread t=new Thread(A);
   Thread t1=new Thread(A,"thread name");
   ```
+
+## 2017-05-07
+
+- 多线程并发执行  
+  Java对于线程启动后唯一能保证的是每个线程都被启动并且结束，但是对于线程的执行顺序则是完全不可控的（由CPU的时间片决定）。
+
+- 线程优先级  
+  Java中优先级高的线程有更大的可能性获得CPU，但不是优先级高的总是先执行，也不是优先级低的总是不执行。
+
+  ```java
+  // 获取t1线程优先级函数,默认的优先级为5
+  t1.getPriority();
+  // 设置t1的优先级,最高优先级为10
+  t1.setPriority(Thread.MAX_PRIORITY);
+  ```
+
+- 线程调度的三种方法  
+
+  - 休眠方法sleep(毫秒数)、sleep(毫秒数,纳秒数)
+
+  - 暂停方法yield(): a.yield/b.yield如果a释放资源，则并不是将资源交给b，而是a,b同时竞争资源，有可能a获得有可能b获得。
+
+    ```java
+    package day57;
+
+    public class TestYield {
+    	
+    	public static void main(String[] args){
+    		Thread t1=new Thread(new MyRunnable1());
+    		Thread t2=new Thread(new MyRunnable2());
+    		t1.start();
+    		t2.start();
+    	}
+    }
+
+    class MyRunnable1 implements Runnable{
+
+    	@Override
+    	public void run() {
+    		// TODO Auto-generated method stub
+    		for(int i=0;i<10;i++){
+    			System.out.print("+");
+    			Thread.yield();
+    		}
+    	}
+    	
+    }
+    	
+    class MyRunnable2 implements Runnable{
+
+    		@Override
+    		public void run() {
+    			// TODO Auto-generated method stub
+    			for(int i=0;i<10;i++){
+    				System.out.print("*");
+    				Thread.yield();
+    			}
+    		}
+    }
+
+    //结果
+    // +*++++**+++******+*+
+    ```
+
+    ​
+
+  - 挂起方法join()  
+    即强制将该线程执行。
+
+    ```java
+    // code
+    package day57;
+
+    public class TestJoin {
+
+    	public static void main(String[] args){
+    		MyThread mt=new MyThread();
+    		mt.start();
+    		
+    		for(int i=0;i<100;i++){
+    			if(i==5){
+    				try{
+    					mt.join();
+    				}catch(InterruptedException e){
+    					e.printStackTrace();
+    				}
+    			}
+    			System.out.print("+");
+    		}
+    	}
+    }
+
+    class MyThread extends Thread{
+    	public void run(){
+    		for(int i=0;i<100;i++){
+    			System.out.print("*");
+    		}
+    	}
+    }
+
+    // 结果
+    // +++++**********+++++
+    // 分析
+    // 当代码执行到第5行，*号的代码强行插入并执行完毕，之后之前的线程在继续打印。
+    ```
+
+    ​
