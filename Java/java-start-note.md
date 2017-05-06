@@ -910,3 +910,38 @@
     > ```
     >
 
+
+## 2017-05-06
+
+- 线程模型  
+  - 新建状态：线程被创建之后处于新建状态；  
+  - 就绪状态：新建线程调用start方法进入就绪状态，或者阻塞状态的线程解除阻塞之后；
+  - 运行状态：处于就绪状态的线程获得资源后进入运行状态；
+  - 阻塞状态：正在运行的线程因为其他原因让出CPU资源，暂时中止而进入阻塞状态；
+  - 终止状态：
+    - 正常终止
+    - 强制终止：stop/destory
+    - 异常终止
+
+- 继承Thread类创建线程
+
+  ```java
+  class classname extends Thread{
+    	public void run(){
+        	//相关代码
+    	}
+  }
+  ```
+
+- 实现Runnable接口创建线程
+
+  ```java
+  class classname implements Runnable{
+    	public void run(){
+        	
+    	}
+  }
+  A a=new A();
+  Thread t=new Thread(A);
+  Thread t1=new Thread(A,"thread name");
+  ```
