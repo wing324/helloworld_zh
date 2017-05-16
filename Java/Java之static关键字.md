@@ -69,7 +69,47 @@
    > - 格式是固定的`public static void main(String[] args){}`
    >   public： 因为权限必须是最大的；
    >   static： 不需要创建对象，直接用主函数所属类名调用即可，如java staticDemo.java时，直接用java staticDemo.main调用方法即可；
+   >
    >   void：主函数没有具体的返回值；
    >   main:   函数名，不是关键字，只是一个被jvm识别的固定名字；
    >   String[] args：主函数的参数列表，是一个数组类型的参数。而且元素都是字符串类型。
+   >
    > - 被jvm识别和调用
+
+四、静态代码块
+
+```java
+// 代码
+public class mainTest {
+
+	public static void main(String[] args){
+		new Demo().show();
+		new Demo().show();
+		new Demo().show();
+	}
+}
+
+class Demo{
+	void show(){
+		System.out.println("show run");
+	}
+  
+	// 静态代码块
+	static{
+		System.out.println("hahahhahah");
+	}
+}
+
+// 结果
+hahahhahah
+show run
+show run
+show run
+```
+
+特点：
+随着类的加载而执行，并且只执行一次。
+
+作用：
+
+用于给类进行初始化。
