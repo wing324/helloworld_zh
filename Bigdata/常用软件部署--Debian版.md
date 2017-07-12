@@ -46,3 +46,39 @@ tcp        0      0 127.0.0.1:8005          0.0.0.0:*               LISTEN      
 tcp        0      0 0.0.0.0:8009            0.0.0.0:*               LISTEN      13916/java
 ```
 
+##### 三、zookeeper安装
+
+```shell
+tar -zxvf zookeeper-3.4.10.tar.gz -C /usr/local/
+cd /usr/local/
+mv zookeeper-3.4.10 zookeeper
+cd zookeeper
+cp conf/zoo_sample.cfg conf/zoo.cfg
+vim conf/zoo.cfg
+# 修改dataDir=/data/zk
+# 增加节点：server.1=ip:2888:3888
+# 增加节点：server.2=ip:2888:3888
+# 创建zk的数据目录
+mkdir /data/zk
+cd /data/zk
+echo $id > myid
+# 如server1，此处需要做的神操作是：echi '1' > myid
+
+# 启动zookeeper
+bin/zkServer.sh start
+# 启动成功输出信息
+# ZooKeeper JMX enabled by default
+# Using config: /usr/local/zookeeper/bin/../conf/zoo.cfg
+# Starting zookeeper ... STARTED
+
+# 查看zookeeper当前的状态
+bin/zkServer.sh status
+# 输出信息
+# ZooKeeper JMX enabled by default
+# Using config: /usr/local/zookeeper/bin/../conf/zoo.cfg
+# Mode: follower
+
+```
+
+
+
