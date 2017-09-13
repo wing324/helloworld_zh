@@ -1,4 +1,4 @@
-## Hadoop的三种模式部署
+## Hadoop的三种模式部署(上)
 
 Linux: Debian8.2
 
@@ -11,6 +11,8 @@ Hadoop安装包下载地址：http://hadoop.apache.org/releases.html
 Java部署请参考[《常用软件部署—Debian版》](https://github.com/wing324/helloworld_zh/blob/master/Bigdata/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E9%83%A8%E7%BD%B2--Debian%E7%89%88.md)
 
 
+
+**该篇将分别讲解Hadoop的本地模式和伪分布模式的部署。**
 
 #### 一、基本配置（三种部署模式都需要的基本步骤）
 
@@ -167,7 +169,3 @@ Java部署请参考[《常用软件部署—Debian版》](https://github.com/win
      sbin/stop-dfs.sh
      ```
 
-#### 四、集群模式(Fully-Distributed Mode)
-
-1. 配置
-2. 操作示例
