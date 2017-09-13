@@ -311,3 +311,14 @@ Java部署请参考[《常用软件部署—Debian版》](https://github.com/win
   NameNode						http://192.168.1.1:50070
 
   DataNode						http://192.168.1.2:50075 http://192.168.1.3:50075
+
+
+
+#### 五、Hadoop集群关闭
+
+```shell
+stop-yarn.sh
+stop-dfs.sh
+mr-jobhistory-daemon.sh stop historyserver
+```
+
