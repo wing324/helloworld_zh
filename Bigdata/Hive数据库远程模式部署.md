@@ -183,11 +183,103 @@ Hive共有三种部署模式，分别为：内置模式，本地模式，远程�
   OUTPUTFORMAT
     'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
   LOCATION
-    'hdfs://172.16.0.220:9000/user/hive/warehouse/test1.db/t'
+    'hdfs://192.168.1.1:9000/user/hive/warehouse/test1.db/t'
   TBLPROPERTIES (
     'transient_lastDdlTime'='1505356773')
   Time taken: 0.193 seconds, Fetched: 13 row(s)
   hive>
   ```
 
+- hiveserver2的启动和登录    
+
+  hiveserver2的作用是：支持嵌入模式和远程模式，需要用beeline配合使用，此时，我们将演示一下。    
+
+  ```shell
+  # 启动hiveserver2的命令行模式
+  linux>  hive --service hiveserver2 --hiveconf hive.server2.thrift.port=9999 &
+  或者
+  linux>  /usr/loal/hive/bin/hiveserver2 --hiveconf hive.server2.thrift.port=9999 &
+
+  # 使用beeline登录hive
+  linux>  /usr/loal/hive/bin/beeline
+  SLF4J: Class path contains multiple SLF4J bindings.
+  SLF4J: Found binding in [jar:file:/usr/local/hive/lib/log4j-slf4j-impl-2.6.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+  SLF4J: Found binding in [jar:file:/usr/local/hadoop/share/hadoop/common/lib/slf4j-log4j12-1.7.10.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+  SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+  SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+  Beeline version 2.3.0 by Apache Hive
+  beeline> !connect jdbc:hive2://192.168.1.1:9999
+  Connecting to jdbc:hive2://192.168.1.1:9999
+  Enter username for jdbc:hive2://192.168.1.1:9999: hadoop
+  Enter password for jdbc:hive2://192.168.1.1:9999: ******
+  Connected to: Apache Hive (version 2.3.0)
+  Driver: Hive JDBC (version 2.3.0)
+  Transaction isolation: TRANSACTION_REPEATABLE_READ
+  0: jdbc:hive2://192.168.1.1:9999>show databases;
+  OK
+  +----------------+
+  | database_name  |
+  +----------------+
+  | default        |
+  | test1          |
+  +----------------+
+  2 rows selected (1.233 seconds)
+  0: jdbc:hive2://192.168.1.1:9999> use test1;
+  OK
+  No rows affected (0.101 seconds)
+  0: jdbc:hive2://192.168.1.1:9999> show tables;
+  OK
+  +-----------+
+  | tab_name  |
+  +-----------+
+  | invites   |
+  | pokes     |
+  | t         |
+  | t3        |
+  | tt        |
+  | ttt       |
+  +-----------+
+  6 rows selected (0.115 seconds)
+  0: jdbc:hive2://192.168.1.1:9999>
+  ```
+
   ​
+
+#### 三、FAQ  
+
+1. beeline登录的时候可能会遇到“User: hadoop is not allowed to impersonate hadoop (state=08S01,code=0)”这个错误。  
+
+   原因：指的是访问权限的问题。  
+
+   解决方法：  
+
+   ```shell
+   # 在hadoop的core-site.xml文件中添加如下配置项
+   linux>  vim /usr/lcoal/hadoop/etc/hadoop/core-site.xml    
+       <property>
+           <name>hadoop.proxyuser.hadoop.hosts</name>
+           <value>*</value>
+       </property>
+       <property>
+           <name>hadoop.proxyuser.hadoop.groups</name>
+           <value>hadoop</value>
+       </property>
+       
+   # 然后重启HDFS之后，即可解决
+   sbin/stop-dfs.sh
+   sbin/start-dfs.sh
+   ```
+
+2. 在hdfs重启之后很短的时间内登录hive可能会遇到“Error: Could not open client transport with JDBC Uri: jdbc:hive2://192.168.1.1:9999: Failed to open new session: java.lang.RuntimeException: org.apache.hadoop.hdfs.server.namenode.SafeModeException: Cannot create directory /user/hive/tmp/hadoop/acde78a1-baea-4eb3-834b-fb4a177313cb. Name node is in safe mode.”  
+
+   原因：Name node is in safe mode，说明Hadoop的Namenode在安全模式下。在分布式文件系统启动的时候，开始的时候会有安全模式，当分布式文件系统处于安全模式的情况下，文件系统中的内容不允许修改也不允许删除，直到安全模式结束。安全模式主要是为了系统启动的时候检查各个DataNode上数据块的有效性，同时根据策略必要的复制或者删除部分数据块。运行期通过命令也可以进入安全模式。在实践过程中，系统启动的时候去修改和删除文件也会有安全模式不允许修改的出错提示，只需要等待一会儿即可。  
+
+   解决方式：  
+
+   ```shell
+   # 方法一： 耐心等待一会即可。
+   # 方法二：不想耐心等待，那么久老老实实敲入命令
+   在Hadoop的安装目录下执行`bin/hadoop dfsadmin -safemode leave`即可
+   ```
+
+   ​
