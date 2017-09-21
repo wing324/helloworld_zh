@@ -200,6 +200,8 @@ OK
 2	Proof reader	20
 3	Wing	30
 Time taken: 0.065 seconds, Fetched: 3 row(s)
+
+# 注意，t3是分区表，但是CTAS操作并没有把分区信息copy出来，容我思索下再来解释==
 ```
 
 
