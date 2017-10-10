@@ -213,6 +213,7 @@ Java部署请参考[《常用软件部署—Debian版》](https://github.com/win
 
     ```shell
     hdfs namenode -format
+    # 初始化的作用是：一个全新的HDFS安装需要被初始化，初始化的过程会在存储目录下创建一个空的文件系统，以及创建namenode持久化数据结构的初始版本。
     ```
 
   - hadoopmaster上执行
@@ -282,6 +283,7 @@ Java部署请参考[《常用软件部署—Debian版》](https://github.com/win
   Cache Remaining%: 0.00%
   Xceivers: 1
   Last contact: Wed Sep 13 12:00:35 CST 2017
+  ```
 
 
   Name: 192.168.1.2:50010 (hadoopslave2)
@@ -316,9 +318,9 @@ Java部署请参考[《常用软件部署—Debian版》](https://github.com/win
 
 #### 五、Hadoop集群关闭
 
-```shell
+​```shell
 stop-yarn.sh
 stop-dfs.sh
 mr-jobhistory-daemon.sh stop historyserver
-```
+  ```
 
