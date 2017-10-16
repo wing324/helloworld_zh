@@ -79,6 +79,3 @@ bin/zkServer.sh status
 # Mode: follower
 
 ```
-
-
-

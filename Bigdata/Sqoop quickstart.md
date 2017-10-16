@@ -65,36 +65,63 @@ Sqoop是一款用于同步关系型数据库到HDFS上的开源工具。官方�
    **TIPS**  
 
    - 默认情况下,$SQOOP_HOME/lib下没有JDBC驱动，需要自行下载并移动到该目录下，否则会爆出找不到JDBC的错误。
-   - `y-m 1`这个参数表示指定一个map任务，默认情况下-m=4，此处指定-m 1的目的是为了查看HDFS文件的时候所有的数据都在一个文件内。
+   - `-m 1`这个参数表示指定一个map任务，默认情况下-m=4，此处指定-m 1的目的是为了查看HDFS文件的时候所有的数据都在一个文件内。
    - Sqoop默认导出文件的分隔符为逗号(',')分隔。
 
 4. 将导出数据的过程生成源代码  
    默认使用3中的导出语句会在当前的目录下生成一个Widgets.java源代码文件，那么如何手动生成源代码文件呢？  
 
    ```shell
-   sqoop codegen --connect jdbc:mysql://192.168.0.1:3306/hadoopguide --table widgets --username wing -P --class-name Widget
+   Linux> sqoop codegen --connect jdbc:mysql://192.168.0.1:3306/hadoopguide --table widgets --username wing -P --class-name Widget
    # 此时会在当前目录下生成一个Widget.java的源代码文件。该操作并不会真正的从MySQL中导出数据，但仍然会做一些检查性的工作。
    ```
 
-5. 使用Sqoop将MySQL数据表导入到Hive中  
+5. 使用Sqoop将MySQL数据表导入到Hive中(import过程)  
+
+   - 将widgets表的数据导出到HDFS上；
+   - 在Hive中创建表widgets相关的表结构；
+   - 将HDFS上的widgets表的数据导入到Hive表中。
 
    ```shell
    # 将widgets表的数据导入到HDFS上
-   sqoop create-hive-table  --connect jdbc:mysql:/192.168.0.1:3306/hadoopguide --table widgets --username wing -P --fields-terminated-by ','
+   Linux> sqoop import --connect jdbc:mysql://192.168.0.1:3306/hadoopguide --table widgets -m 1 --username wing -P
 
    # 此时可以在/user/Hadoop目录下看到多出来的widgets目录
 
    # 在Hive中创建widgets表结构
-   CREATE TABLE `widgets` (
-     `id` int,
-     `widget_name` string,
-     `price` decimal,
-     `design_date` date,
-     `version` int,
-     `design_comment` string)
-    ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+   Linux> sqoop create-hive-table  --connect jdbc:mysql:/192.168.0.1:3306/hadoopguide --table widgets --username wing -P --fields-terminated-by ','
+    
+    # 将HDFS上的widgets表的数据导入到Hive表中
+    Hive> load data inpath 'widgets' into table widgets;
+    
+    # 在Hive中查询widgets表，查看是否数据导入完毕。
+    hive> select * from widgets;
    ```
 
-   ​
+6. 一句语句完成Sqoop将MySQL数据表导入到Hive中
+
+   ```shell
+   # 将hadoopguide数据库中的widgets表导入到hive的wing数据库中。
+   Linux> sqoop import --connect jdbc:mysql://192.168.0.1:3306/hadoopguide --table widgets --username wing -P -m 1 --hive-import --hive-database wing
+
+   # 验证Hive中的hadoopguide数据库是否有widgets的数据
+   hive> select * from zip_profits order by sales_vol desc;
+   ```
+
+7. 使用Sqoop将Hive中的表导入到MySQL中(export过程)  
+
+   - 在MySQL中创建表结构(Sqoop import的过程可以将MySQL中的表字段类型转换为Hive中的表字段类型，反之则不可以，所以此处必须需要提前在MySQL中创建合理的表结构。)
+   - 运行Sqoop export命令，从Hive中导出相关数据到MySQL中
+
+   ```shell
+   # 在MySQL中创建表结构
+   MySQL> create table sales_by_zip (volume decimal(8,2), zip int);
+
+   # 运行Sqoop命令导出数据
+   Linux> sqoop export --connect jdbc:mysql://192.168.0.1:3306/hadoopguide --table sales_by_zip  --username wing -P -m 1 --export-dir /user/hive/warehouse/zip_profits --input-fields-terminated-by '\0001';
+
+   # 验证Hive中的hadoopguide数据库中是否有zip_profits的数据
+   MySQL> select * from sales_by_zip;
+   ```
 
    ​
