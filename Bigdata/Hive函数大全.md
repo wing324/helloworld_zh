@@ -1,11 +1,13 @@
 ## Hive函数大全
 
-参考《Apache Hive Cookbook》。
+参考文档：
 
-一、分析型函数
+《Apache Hive Cookbook》
+
+[Hive分析窗口函数(一) SUM,AVG,MIN,MAX](http://lxw1234.com/archives/2015/04/176.htm)
 
 ```sql
-# 示例表结构
+# 示例表结构sales
 CREATE TABLE `sales`(
   `id` int,
   `fname` string,
@@ -14,7 +16,7 @@ CREATE TABLE `sales`(
   `ip` string,
   `pid` string)
   
-# 示例数据
+# 示例数据sales
 0	Zena	Tennessee	21550	192.168.56.101	PI_09
 1	Elaine	Alaska	6429	192.168.56.101	PI_03
 2	Sage	Nevada	8899	192.168.56.102	PI_03
@@ -25,7 +27,24 @@ CREATE TABLE `sales`(
 7	Donova	New York	95234	192.168.56.106	PI_05
 8	Aileen	Illinois	68284	192.168.56.106	PI_02
 9	Maraam	Hawaii	95234	192.168.56.107	PI_07
+
+# 示例表结构po
+CREATE TABLE `po`(
+  `cookieid` string,
+  `createtime` string,
+  `pv` int)
+  
+# 示例数据po
+cookie1	2015-04-10	1
+cookie1	2015-04-11	5
+cookie1	2015-04-12	7
+cookie1	2015-04-13	3
+cookie1	2015-04-14	2
+cookie1	2015-04-15	4
+cookie1	2015-04-16	5
 ```
+
+##### 一、分析型函数
 
 1. ROW_NUMBER
    语法：
@@ -155,8 +174,6 @@ CREATE TABLE `sales`(
    9	192.168.56.107	0.0
    ```
 
-   ​
-
 5. CUME_DIST
 
    - CUME_DIST() OVER (ORDER BY col) 小于等于col当前值的行数/总行数。
@@ -218,4 +235,55 @@ CREATE TABLE `sales`(
    9	192.168.56.107	1
    ```
 
-   ​
+##### 二、窗口型函数
+
+1. LEAD
+   - LEAD() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的下一个col2
+2. LAG
+3. FIRST_VALUE
+4. LAST_VALUE
+5. OVER
+   - 聚集OVER
+   - COUNT
+   - MIN
+   - MAX
+   - AVG
+   - OVER WITH PARTITION BY
+   - OVER WITH PARTITION BY and ORDER BY
+
+```sql
+# LEAD
+hive> select fname,ip,pid,lead(pid) over (partition by ip order by ip) from sales;
+Abra	192.168.56.101	PI_09	PI_03 -- ip的分组中下一个pid的值为PI_03
+Elaine	192.168.56.101	PI_03	PI_09
+Zena	192.168.56.101	PI_09	NULL
+Sage	192.168.56.102	PI_03	NULL
+Cade	192.168.56.103	PI_06	NULL
+Stone	192.168.56.104	PI_08	NULL
+Regina	192.168.56.105	PI_10	NULL
+Aileen	192.168.56.106	PI_02	PI_05
+Donova	192.168.56.106	PI_05	NULL
+Maraam	192.168.56.107	PI_07	NULL
+
+# OVER(PARTITION BY col1 ORDER BY col2)
+SELECT cookieid,
+createtime,
+pv,
+SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime) AS pv1, -- 默认为从起点到当前行
+SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS pv2, --从起点到当前行，结果同pv1 
+SUM(pv) OVER(PARTITION BY cookieid) AS pv3,								--分组内所有行
+SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) AS pv4,   --当前行+往前3行
+SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN 3 PRECEDING AND 1 FOLLOWING) AS pv5,    --当前行+往前3行+往后1行
+SUM(pv) OVER(PARTITION BY cookieid ORDER BY createtime ROWS BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING) AS pv6   ---当前行+往后所有行  
+FROM po;
+cookie1	2015-04-16	5	27	27	27	14	14	5
+cookie1	2015-04-15	4	22	22	27	16	21	9
+cookie1	2015-04-14	2	18	18	27	17	21	11
+cookie1	2015-04-13	3	16	16	27	16	18	14
+cookie1	2015-04-12	7	13	13	27	13	16	21
+cookie1	2015-04-11	5	6	6	27	6	13	26
+cookie1	2015-04-10	1	1	1	27	1	6	27
+
+# 其他聚集函数方式相同。
+```
+
