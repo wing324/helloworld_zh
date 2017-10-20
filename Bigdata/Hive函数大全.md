@@ -240,8 +240,11 @@ cookie1	2015-04-16	5
 1. LEAD
    - LEAD() OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的下一个col2
 2. LAG
+   - OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的上一个col2
 3. FIRST_VALUE
+   - OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的第一个col2
 4. LAST_VALUE
+   - OVER (PARTITION BY col1 ORDER BY col2) 按照col1分组后，返回结果集中的最后一个col2
 5. OVER
    - 聚集OVER
    - COUNT
@@ -252,20 +255,7 @@ cookie1	2015-04-16	5
    - OVER WITH PARTITION BY and ORDER BY
 
 ```sql
-# LEAD
-hive> select fname,ip,pid,lead(pid) over (partition by ip order by ip) from sales;
-Abra	192.168.56.101	PI_09	PI_03 -- ip的分组中下一个pid的值为PI_03
-Elaine	192.168.56.101	PI_03	PI_09
-Zena	192.168.56.101	PI_09	NULL
-Sage	192.168.56.102	PI_03	NULL
-Cade	192.168.56.103	PI_06	NULL
-Stone	192.168.56.104	PI_08	NULL
-Regina	192.168.56.105	PI_10	NULL
-Aileen	192.168.56.106	PI_02	PI_05
-Donova	192.168.56.106	PI_05	NULL
-Maraam	192.168.56.107	PI_07	NULL
-
-# OVER(PARTITION BY col1 ORDER BY col2)
+# 首先需要了解函数OVER(PARTITION BY col1 ORDER BY col2)
 SELECT cookieid,
 createtime,
 pv,
@@ -283,7 +273,58 @@ cookie1	2015-04-13	3	16	16	27	16	18	14
 cookie1	2015-04-12	7	13	13	27	13	16	21
 cookie1	2015-04-11	5	6	6	27	6	13	26
 cookie1	2015-04-10	1	1	1	27	1	6	27
-
 # 其他聚集函数方式相同。
+
+# LEAD
+hive> select fname,ip,pid,lead(pid) over (partition by ip order by ip) from sales;
+Abra	192.168.56.101	PI_09	PI_03 -- ip的分组中下一个pid的值为PI_03
+Elaine	192.168.56.101	PI_03	PI_09
+Zena	192.168.56.101	PI_09	NULL
+Sage	192.168.56.102	PI_03	NULL
+Cade	192.168.56.103	PI_06	NULL
+Stone	192.168.56.104	PI_08	NULL
+Regina	192.168.56.105	PI_10	NULL
+Aileen	192.168.56.106	PI_02	PI_05
+Donova	192.168.56.106	PI_05	NULL
+Maraam	192.168.56.107	PI_07	NULL
+
+# LAG
+hive> select fname,ip,pid,lag(pid) over (partition by ip order by ip) from sales;
+Abra	192.168.56.101	PI_09	NULL  
+Elaine	192.168.56.101	PI_03	PI_09  -- ip的分组中上一个pid的值为PI_09
+Zena	192.168.56.101	PI_09	PI_03
+Sage	192.168.56.102	PI_03	NULL
+Cade	192.168.56.103	PI_06	NULL
+Stone	192.168.56.104	PI_08	NULL
+Regina	192.168.56.105	PI_10	NULL
+Aileen	192.168.56.106	PI_02	NULL
+Donova	192.168.56.106	PI_05	PI_02
+Maraam	192.168.56.107	PI_07	NULL
+
+# FIRST_VALUE
+hive> select fname,ip,pid,first_value(pid) over (partition by ip order by ip) from sales;
+Abra	192.168.56.101	PI_09	PI_09  -- ip的分组中第一个pid的值为PI_09
+Elaine	192.168.56.101	PI_03	PI_09
+Zena	192.168.56.101	PI_09	PI_09
+Sage	192.168.56.102	PI_03	PI_03
+Cade	192.168.56.103	PI_06	PI_06
+Stone	192.168.56.104	PI_08	PI_08
+Regina	192.168.56.105	PI_10	PI_10
+Aileen	192.168.56.106	PI_02	PI_02  -- ip的分组中第一个pid的值为PI_02
+Donova	192.168.56.106	PI_05	PI_02
+Maraam	192.168.56.107	PI_07	PI_07
+
+# LAST_VALUE
+hive> select fname,ip,pid,last_value(pid) over (order by ip) from sales;
+Abra	192.168.56.101	PI_09	PI_09 -- ip的分组中最后一个pid的值为PI_09
+Elaine	192.168.56.101	PI_03	PI_09
+Zena	192.168.56.101	PI_09	PI_09
+Sage	192.168.56.102	PI_03	PI_03
+Cade	192.168.56.103	PI_06	PI_06
+Stone	192.168.56.104	PI_08	PI_08
+Regina	192.168.56.105	PI_10	PI_10
+Aileen	192.168.56.106	PI_02	PI_05
+Donova	192.168.56.106	PI_05	PI_05 -- ip的分组中最后一个pid的值为PI_05
+Maraam	192.168.56.107	PI_07	PI_07
 ```
 
