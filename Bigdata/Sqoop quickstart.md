@@ -11,7 +11,7 @@ Sqoop的安装需要建立在HDFS之上，HDFS是Hadoop的一种文件系统，H
 
 ##### 二、Sqoop的作用
 
-Sqoop是一款用于同步关系型数据库到HDFS上的开源工具。官方介绍请移步[这里](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_introduction)。
+Sqoop是一款用于关系型数据库和HDFS同步的开源工具。官方介绍请移步[这里](http://sqoop.apache.org/docs/1.4.6/SqoopUserGuide.html#_introduction)。
 
 ##### 三、Sqoop的安装
 
