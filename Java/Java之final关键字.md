@@ -1,0 +1,19 @@
+## Java之final关键字
+
+参考：[腾讯课堂 ](https://ke.qq.com/webcourse/index.html#course_id=147646&term_id=100167776&taid=747444568735934&vid=r1411l01p38) 
+
+##### 一、为什么使用final关键字  
+
+继承关系中最大的弊端是破坏了封装：子类可以访问父类的实现细节，而且可以通过方法覆盖的形式修改方法的实现细节。那么final就用来让你不可以做任何的更改，只能调用，不允许修改。  
+
+final可以修饰非抽象类/非抽象方法/变量。  
+
+**注意：**构造方法不能使用final修饰，因为构造方法不能被继承，它是最终的一个状态。  
+
+##### 二、关于final
+
+- final修饰的非抽象类
+  final修饰的非抽象类是不能被子类继承的。  
+  ![final_class_cannot_extends](..\img\final_class_cannot_extends.png)
+- final修饰的非抽象方法
+- final修饰的变量
