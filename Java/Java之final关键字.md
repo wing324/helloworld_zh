@@ -14,6 +14,6 @@ final可以修饰非抽象类/非抽象方法/变量。
 
 - final修饰的非抽象类
   final修饰的非抽象类是不能被子类继承的。  
-  ![final_class_cannot_extends](..\img\final_class_cannot_extends.png)
+  ![final_class_cannot_extends](https://github.com/wing324/helloworld_zh/blob/master/img/final_class_cannot_extends.png)
 - final修饰的非抽象方法
 - final修饰的变量
