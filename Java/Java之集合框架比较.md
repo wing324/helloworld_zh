@@ -66,4 +66,37 @@ TreeSet类：范围查询频繁且不需要保证元素先后添加顺序的时�
 
 **共同点：**
 
+- Key不允许重复，Value允许重复
+
 **不同点：**
+
+>1. HashMap类
+>   - 底层采用Hash算法
+>   - Key判断重复的标准，equals和hashCode是否相等
+>   - 不保证Key添加的先后顺序
+>2. TreeMap类
+>   - 底层采用红黑树算法
+>   - 此时Key可按照自然排序或者定制排序
+>3. LinkedHashMap类
+>   - 底层采用Hash算法+链表算法
+>   - 保证Key添加的先后顺序
+>4. HashTable类
+>   - 底层采用Hash算法
+>   - 该类是HashMap的前身，不建议使用。
+>5. Properties类
+>   - 底层采用Hash算法，Key和Value都是String类型
+
+**使用选择**
+
+HashMap类：等值查询最快
+
+TreeMap类：范围查询最快
+
+LinkedHashSet类：等值查询频繁且需要保证元素先后添加顺序的时候使用
+
+以上三种类的线程都没有使用synchronize修饰，都是线程不安全的，可以使用`Map m = Collections.synchronizedMap(Map对象);`解决该问题。
+
+HashTable类：线程是安全的，但是性能较低
+
+Properties类：用来加载资源文件的时候使用
+
