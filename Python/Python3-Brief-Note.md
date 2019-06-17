@@ -448,3 +448,25 @@ Producer p3 sleeps 2 seconds
 Producer p3 produces 34 data
 ```
 
+#### 15. Collect Data from Website
+
+```python
+# example 1
+from urllib import request
+url = "https://www.google.com/"
+res = request.urlopen(url, timeout=1)
+print(res.read())
+
+# example 2
+from urllib import request
+from urllib import parse
+# get
+res1 = request.urlopen("http://httpbin.org/get", timeout=1)
+print(res1.read())
+# post
+data = bytes(parse.urlencode({"world":"hello"}), encoding="utf8")
+print(data)
+res2 = request.urlopen("http://httpbin.org/post", data=data)
+print(res2.read().decode("utf-8"))
+```
+
