@@ -247,3 +247,204 @@ cat
 cat is running.
 ```
 
+#### 11. With expression
+
+```python
+# example without exception
+class Testwith():
+    def __enter__(self):
+        print("run")
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("exit")
+with Testwith():
+    print("Test is running")
+# result
+run
+Test is running
+exit
+
+# example with exception
+class Testwith():
+    def __enter__(self):
+        print("run")
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_tb is None:
+            print("Normal exit")
+        else:
+            print("exit with error: %s" %exc_tb)
+with Testwith():
+    print("Test is running")
+    raise NameError("Test NameError")
+# result
+run
+Test is running
+exit with error: <traceback object at 0x030830D0>
+Traceback (most recent call last):
+  File "hellopython.py", line 108, in <module>
+    raise NameError("Test NameError")
+NameError: Test NameError
+```
+
+#### 12. Multi Threads
+
+```python
+# example while MainThread end first
+import threading
+import time
+def myThread(arg1, arg2):
+    print(threading.current_thread().getName(), "start")
+    time.sleep(1)
+    print("%s %s" %(arg1, arg1))
+    print(threading.current_thread().getName(), "stop")
+for i in range(1,6,1):
+    t1 = threading.Thread(target=myThread, args=(i, i+1))
+    t1.start()
+print(threading.current_thread().getName(), "end")
+
+# result
+Thread-1 start
+Thread-2 start
+Thread-3 start
+Thread-4 start
+Thread-5 start
+MainThread end
+3 3
+Thread-3 stop
+2 2
+Thread-2 stop
+1 1
+Thread-1 stop
+4 4
+Thread-4 stop
+5 5
+Thread-5 stop
+
+# example while SubThread end first
+import threading
+class MyThread(threading.Thread):
+    def run(self):
+        print(threading.current_thread().getName(),"Start")
+        print("Run")
+        print(threading.current_thread().getName(), "Stop")
+t1 = MyThread()
+t1.start()
+t1.join()
+print(threading.current_thread().getName(), "End")
+# result
+Thread-1 Start
+Run
+Thread-1 Stop
+MainThread End
+```
+
+#### 13. Queue
+
+```python
+>>> import queue
+>>> q = queue.Queue()
+>>> q.put(1)
+>>> q.put(2)
+>>> q.put(3)
+>>> q.put(4)
+>>> q.get()
+1
+>>> q.get()
+2
+>>> q.get()
+3
+>>> q.get()
+4
+```
+
+#### 14. Producer & Consumer problem
+
+```python
+# basic code
+from threading import Thread, current_thread
+import time
+import random
+from queue import Queue
+queue = Queue(5)
+class ProducerThread(Thread):
+    def run(self):
+        name = current_thread().getName()
+        nums = range(100)
+        global queue
+        while True:
+            num = random.choice(nums)
+            queue.put(num)
+            print("Producer %s produces %s data" %(name, num))
+            t = random.randint(1,3)
+            time.sleep(t)
+            print("Producer %s sleeps %s seconds" %(name, t))
+class ConsumerThread(Thread):
+    def run(self):
+        name = current_thread().getName()
+        global queue
+        while True:
+            num = queue.get()
+            queue.task_done()
+            print("Consumer %s consumers %s data" %(name, num))
+            t = random.randint(1,5)
+            time.sleep(t)
+            print("Consumer %s sleeps %s seconds" %(name, t))
+
+# Consumer more than Producer
+p1 = ProducerThread(name="p1")
+p1.start()
+c1 = ConsumerThread(name="c1"prop)
+c1.start()
+c2 = ConsumerThread(name="c2")
+c2.start()
+# result
+Producer p1 produces 73 data
+Consumer c1 consumers 73 data
+Producer p1 sleeps 1 seconds
+Producer p1 produces 51 data
+Consumer c2 consumers 51 data
+Consumer c1 sleeps 2 seconds
+Producer p1 sleeps 3 seconds
+Producer p1 produces 7 data
+Consumer c1 consumers 7 data
+Consumer c1 sleeps 1 seconds
+Producer p1 sleeps 1 seconds
+Producer p1 produces 30 data
+Consumer c1 consumers 30 data
+Consumer c2 sleeps 5 seconds
+Producer p1 sleeps 1 seconds
+
+# Producer more than Consumer
+p1 = ProducerThread(name="p1")
+p1.start()
+p2 = ProducerThread(name="p2")
+p2.start()
+p3 = ProducerThread(name="p3")
+p3.start()
+c1 = ConsumerThread(name="c1")
+c1.start()
+c2 = ConsumerThread(name="c2")
+c2.start()
+#result
+Producer p1 produces 32 data
+Producer p2 produces 4 data
+Producer p3 produces 17 data
+Consumer c1 consumers 32 data
+Consumer c2 consumers 4 data
+Producer p1 sleeps 2 seconds
+Producer p1 produces 79 data
+Producer p2 sleeps 2 seconds
+Producer p2 produces 33 data
+Consumer c1 sleeps 3 seconds
+Consumer c1 consumers 17 data
+Producer p1 sleeps 1 seconds
+Producer p3 sleeps 3 seconds
+Producer p3 produces 55 data
+Producer p1 produces 1 data
+Consumer c2 sleeps 4 seconds
+Consumer c2 consumers 79 data
+Producer p2 sleeps 3 seconds
+Producer p2 produces 52 data
+Producer p3 sleeps 2 seconds
+Producer p3 produces 34 data
+```
+
