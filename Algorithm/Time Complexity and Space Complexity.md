@@ -2,7 +2,7 @@
 
 #### 1. Array
 
-![](..\img\array_img.png)
+![](<https://github.com/wing324/helloworld_zh/blob/master/img/array_img.png>)
 
 > Access: O(1)
 >
@@ -12,7 +12,7 @@
 
 #### 2. Linked List
 
-![](..\img\linkedList_img.png)
+![](<https://github.com/wing324/helloworld_zh/blob/master/img/linkedList_img.png>)
 
 > Access: O(N)
 >
@@ -32,7 +32,7 @@
 
 #### 4. Queue(First In First Out)
 
-![](..\img\queue_img.png)
+![](<https://github.com/wing324/helloworld_zh/blob/master/img/queue_img.png>)
 
 >Access: O(N)
 >
@@ -42,12 +42,12 @@
 
 ### Time Complexity Compare
 
-![](..\img\bigotccompare.jpeg)
+![](<https://github.com/wing324/helloworld_zh/blob/master/img/bigotccompare.jpeg>)
 
 ### Data Structure Time Complexity
 
-![](..\img\bigocheatsheet.png)
+![](<https://github.com/wing324/helloworld_zh/blob/master/img/bigocheatsheet.png>)
 
 ### Array Sorting Algorithm Time Complexity
 
-![](..\img\algorithmbigocheatsheet.png)
+![](<https://github.com/wing324/helloworld_zh/blob/master/img/algorithmbigocheatsheet.png>)
