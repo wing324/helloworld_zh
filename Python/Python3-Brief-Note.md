@@ -1,19 +1,4 @@
-title: Python3 Brief Note
-
-date: 2019-06-16 20:29:06
-
-categories:
-
-- Python
-
-tags:
-
-- Note
-
-------
-
-Some knowledge hard to understand in Python.
-<!-- more -->
+#  Python3 Brief Note
 
 #### 1. List Comprehension
 
