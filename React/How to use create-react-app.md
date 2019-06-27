@@ -23,3 +23,13 @@
    cd helloworld
    npm start / yarn start
    ```
+
+5. Create a production build and you will get a "build" folder
+
+   ```shell
+   npm run build
+   ```
+
+   When this has completed, you can follow the onscreen prompts to deploy it to your server or just test it locally using the popular `serve` node package
+
+   
