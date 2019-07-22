@@ -114,3 +114,22 @@
 >     </body>
 >   </html>
 >   ```
+
+### Running Project
+
+> - Put below code into `package.json` file.
+>
+>   ```shell
+>   "scripts": {
+>     "start": "webpack-dev-server",
+>     "build": "webpack"
+>   },
+>   ```
+>
+> - Run the project.
+>
+>   ```shell
+>   npm start
+>   // or
+>   yarn start
+>   ```
