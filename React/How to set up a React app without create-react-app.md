@@ -160,4 +160,26 @@ Initializing the project
 > yarn add redux react-redux
 > ```
 >
-> 
+
+### 4. Set up JSX
+
+### Install JSX
+
+> Use the below command at the `newProject` folder.
+>
+> ```shell
+> npm install --save-dev babel-preset-react
+> // or 
+> yarn add babel-preset-react
+> ```
+
+### Config .babelrc file
+
+> ```shell
+> {
+>   "presets":[
+>     "@babel/preset-env",
+>     "@babel/preset-react"],
+>   "plugins": [ "transform-object-rest-spread" ]
+> }
+> ```
