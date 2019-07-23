@@ -2,7 +2,7 @@
 
 ### 1. Set up project
 
-#### Setting up Node.js or Yarn
+#### - Setting up Node.js or Yarn
 
 > You can download Node.js or Yarn from their official website:
 > Node.js: [https://nodejs.org/en/download/](<https://nodejs.org/en/download/>)
@@ -38,7 +38,7 @@ Initializing the project
 >   |--src
 >   ```
 
-#### Setting up Webpack
+#### - Setting up Webpack
 
 > - Install Webpack related package
 >
@@ -70,7 +70,7 @@ Initializing the project
 >   };
 >   ```
 
-#### Setting up Babel
+#### - Setting up Babel
 
 > - Install Babel related package
 >
@@ -93,7 +93,7 @@ Initializing the project
 >   }
 >   ```
 
-#### Setting up the entry files
+#### - Setting up the entry files
 
 > - Create `newProject/src/index.js` file, and put the below code into the file.
 >
@@ -117,7 +117,7 @@ Initializing the project
 >   </html>
 >   ```
 
-#### Running Project
+#### - Running Project
 
 > - Put below code into `package.json` file.
 >
