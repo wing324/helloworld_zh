@@ -1,12 +1,14 @@
-# How to set up a React app without create-react-app
+# How to set up a React Project without create-react-app
 
-### Setting up Node.js or Yarn
+### 1. Set up project
+
+#### Setting up Node.js or Yarn
 
 > You can download Node.js or Yarn from their official website:
 > Node.js: [https://nodejs.org/en/download/](<https://nodejs.org/en/download/>)
 > Yarn: [https://yarnpkg.com/lang/en/docs/install/#windows-stable](https://yarnpkg.com/lang/en/docs/install/#windows-stable)
 
-### Initializing the project
+Initializing the project
 
 > - Create a new and empty directory for the project, and get into the new directory.
 >
@@ -36,7 +38,7 @@
 >   |--src
 >   ```
 
-### Setting up Webpack
+#### Setting up Webpack
 
 > - Install Webpack related package
 >
@@ -68,7 +70,7 @@
 >   };
 >   ```
 
-### Setting up Babel
+#### Setting up Babel
 
 > - Install Babel related package
 >
@@ -91,7 +93,7 @@
 >   }
 >   ```
 
-### Setting up the entry files
+#### Setting up the entry files
 
 > - Create `newProject/src/index.js` file, and put the below code into the file.
 >
@@ -115,7 +117,7 @@
 >   </html>
 >   ```
 
-### Running Project
+#### Running Project
 
 > - Put below code into `package.json` file.
 >
@@ -133,3 +135,29 @@
 >   // or
 >   yarn start
 >   ```
+
+### 2. Set up React
+
+#### Install React
+
+> Use the below command at the `newProject` folder.
+>
+> ```shell
+> npm install --save react react-dom
+> // or
+> yarn add react react-dom
+> ```
+
+### 3. Set up redux
+
+#### Install Redux
+
+> Use the below command at the `newProject` folder.
+>
+> ```shell
+> npm install --save redux react-redux
+> // or
+> yarn add redux react-redux
+> ```
+>
+> 
