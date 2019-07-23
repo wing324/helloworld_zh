@@ -75,8 +75,8 @@ Initializing the project
 > - Install Babel related package
 >
 >   ```shell
->   npm install --save-dev babel-core babel-loader babel-preset-es2015
->   npm install --save-dev babel-plugin-transform-object-rest-spread
+>   npm install --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react @babel/core @babel/preset-env @babel/preset-react
+>   npm install --save-dev babel-plugin-transform-object-rest-spread 
 >   // or
 >   yarn add  babel-core babel-loader babel-preset-es2015
 >   yarn add babel-plugin-transform-object-rest-spread
