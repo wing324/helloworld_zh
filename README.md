@@ -1,23 +1,7 @@
 # helloworld
-#### 关于helloworld仓库
+#### About helloworld
 
-Personal Tech Note
-
-经过一个很久的纠结，终于在受不了github.io的缓慢的前提下，将所有的blog文章，迁移github仓库中。。
-
-helloworld仓库中记录的都是我学习这门技术过程中的所有笔记。
-
-<br />
-
-#### 关于我
-
-20171016之前拥有三年MySQL DBA的职业生涯，这是我大学时候的梦想。
-
-20171016之后挥别了大学时候的梦想，拥抱小时候做个科学家的梦想。开始从事于大数据的工作，从ETL工程师做起。开始接触Java。但内心还是热爱着Python。
-
-对Linux操作系统情有独钟，喜欢编程，梦想成为一名科学家。
-
-喜欢一切新奇的技术。
+This is study note from me.
 
 
 
