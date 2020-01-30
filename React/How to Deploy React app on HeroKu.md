@@ -98,4 +98,10 @@
   # or open link1
   ```
 
+- If you have any issue, you can also look the Heroku log
+
+  ```shell
+  heroku logs
+  ```
+
   
