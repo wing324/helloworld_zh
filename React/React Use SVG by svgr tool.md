@@ -1,4 +1,4 @@
-# React Use SVG by svgr tool
+# React Uses SVG by svgr tool
 
 1. Create `assests` and `Icons` folder under `src` folder.
 
